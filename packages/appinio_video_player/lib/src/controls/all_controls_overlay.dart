@@ -84,10 +84,14 @@ class _AllControlsOverlayState extends State<AllControlsOverlay> {
   }
 
   void _toggleControlsVisibility(BuildContext context) {
-    widget.customVideoPlayerController.areControlsVisible.value =
-        !_controlsVisible;
+    if (widget.customVideoPlayerController.isPlayingNotifier.value) {
+      widget.customVideoPlayerController.videoPlayerController.pause();
+    } else {
+      widget.customVideoPlayerController.videoPlayerController.play();
+    }
+    widget.customVideoPlayerController.areControlsVisible.value = true;
     setState(() {
-      _controlsVisible = !_controlsVisible;
+      _controlsVisible = true;
     });
     if (_controlsVisible) {
       _fadeOutControls();
