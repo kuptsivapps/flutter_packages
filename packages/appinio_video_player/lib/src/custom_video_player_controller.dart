@@ -24,6 +24,7 @@ class CustomVideoPlayerController {
   final CustomVideoPlayerSettings customVideoPlayerSettings;
   final Map<String, VideoPlayerController>? additionalVideoSources;
   final ValueNotifier<bool> areControlsVisible = ValueNotifier<bool>(true);
+  bool wasPlaying = false;
 
   CustomVideoPlayerController({
     required this.context,
@@ -64,6 +65,7 @@ class CustomVideoPlayerController {
   final ValueNotifier<bool> _isPlayingNotifier = ValueNotifier(false);
 
   Future<void> _enterFullscreen() async {
+    wasPlaying = _isPlayingNotifier.value;
     final TransitionRoute<void> route = PageRouteBuilder<void>(
       pageBuilder: (context, animation, secondaryAnimation) {
         return AnimatedBuilder(
@@ -84,6 +86,7 @@ class CustomVideoPlayerController {
   }
 
   Future<void> _exitFullscreen() async {
+    wasPlaying = _isPlayingNotifier.value;
     await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     await SystemChrome.setEnabledSystemUIMode(
       customVideoPlayerSettings.systemUIModeAfterFullscreen,
