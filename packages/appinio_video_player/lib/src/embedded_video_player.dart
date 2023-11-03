@@ -52,9 +52,9 @@ class _EmbeddedVideoPlayerState extends State<EmbeddedVideoPlayer> {
                 child: FittedBox(
                   fit: BoxFit.cover,
                   child: SizedBox(
-                    width: _customVideoPlayerController.videoPlayerController.value.size.width,
-                    height: _customVideoPlayerController.videoPlayerController.value.size.height,
-                    child: VideoPlayer(_customVideoPlayerController.videoPlayerController),
+                    width: widget.customVideoPlayerController.videoPlayerController.value.size.width,
+                    height: widget.customVideoPlayerController.videoPlayerController.value.size.height,
+                    child: VideoPlayer(widget.customVideoPlayerController.videoPlayerController),
                   ),
                 ),
               ) : AspectRatio(
