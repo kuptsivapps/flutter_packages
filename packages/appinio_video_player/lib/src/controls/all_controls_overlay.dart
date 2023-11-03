@@ -40,6 +40,11 @@ class _AllControlsOverlayState extends State<AllControlsOverlay> {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () => _toggleControlsVisibility(context),
+      onPanUpdate: (details) async {
+        if (details.delta.dy > 0 && widget.customVideoPlayerController.isFullscreen) {
+          await widget.customVideoPlayerController.setFullscreen(false);
+        }
+      },
       child: Container(
         padding: widget.customVideoPlayerController.customVideoPlayerSettings
             .controlsPadding,
