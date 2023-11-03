@@ -48,9 +48,17 @@ class _EmbeddedVideoPlayerState extends State<EmbeddedVideoPlayer> {
               color: CupertinoColors.black,
             ),
             Center(
-              child: AspectRatio(
-                aspectRatio: widget.customVideoPlayerController
-                    .videoPlayerController.value.aspectRatio,
+              child: widget.customVideoPlayerController.customVideoPlayerSettings.noAspectRatio ? SizedBox.expand(
+                child: FittedBox(
+                  fit: BoxFit.cover,
+                  child: SizedBox(
+                    width: _customVideoPlayerController.videoPlayerController.value.size.width,
+                    height: _customVideoPlayerController.videoPlayerController.value.size.height,
+                    child: VideoPlayer(_customVideoPlayerController.videoPlayerController),
+                  ),
+                ),
+              ) : AspectRatio(
+                aspectRatio: widget.customVideoPlayerController.videoPlayerController.value.aspectRatio,
                 child: IgnorePointer(
                   child: VideoPlayer(
                     widget.customVideoPlayerController.videoPlayerController,

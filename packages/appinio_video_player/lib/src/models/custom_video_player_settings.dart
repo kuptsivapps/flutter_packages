@@ -9,6 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class CustomVideoPlayerSettings {
+  /// remove aspect ratio
+  final bool noAspectRatio;
+
   /// Define a custom aspect ratio for the video.
   final double? customAspectRatio;
 
@@ -117,6 +120,7 @@ class CustomVideoPlayerSettings {
   final CustomVideoPlayerPopupSettings customVideoPlayerPopupSettings;
 
   const CustomVideoPlayerSettings({
+    this.noAspectRatio = false,
     this.customAspectRatio,
     this.placeholderWidget,
     this.thumbnailWidget,
